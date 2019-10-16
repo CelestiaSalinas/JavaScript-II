@@ -1,7 +1,8 @@
 // Create a higher order function and invoke the callback function to test your work. You have been provided an example of a problem and a solution to see how this works with our items array.  Study both the problem and the solution to figure out the rest of the problems.
 
-const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
+const items = ["Pencil", "Notebook", "yo-yo", "Gum"];
 
+items.forEach((item, idx, items) => {});
 /* 
 
   // GIVEN THIS PROBLEM:
@@ -38,32 +39,55 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
   console.log(test2); // "this Pencil is worth a million dollars!"
 */
 
-
 function getLength(arr, cb) {
   // getLength passes the length of the array into the callback.
+  const len = arr.length;
+  return cb(len);
 }
 
+getLength(items, function(n) {
+  //console.log((n = 2));
+  return n * 2;
+});
 function last(arr, cb) {
   // last passes the last item of the array into the callback.
 }
 
 function sumNums(x, y, cb) {
+  const total = x + y;
+  return cb(total);
   // sumNums adds two numbers (x, y) and passes the result to the callback.
 }
+sumNums(3, 9, console.log);
 
 function multiplyNums(x, y, cb) {
   // multiplyNums multiplies two numbers and passes the result to the callback.
+  const total = x * y;
+  return cb(total);
 }
+multiplyNums(7, 9, console.log);
 
 function contains(item, list, cb) {
   // contains checks if an item is present inside of the given array/list.
   // Pass true to the callback if it is, otherwise pass false.
+  const hasItem = list.some(listItem => item === listItem);
+  return cb(hasItem);
 }
 
+contains("apple", items, console.log);
+
 /* STRETCH PROBLEM */
+
+const items2 = ["Pencil", "Pencil", "Notebook", "yo-yo", "Gum"];
 
 function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+
+  const noDupes = array.filter((item, idx, array) => {
+    return array.lastIndexOf(item) === idx;
+  });
+  return cb(noDupes);
 }
+removeDuplicates(items2, console.log);
